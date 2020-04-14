@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression suite" parallel="methods" thread-count="5">
+    <parameter name="username" value="user"/>
+    <parameter name="password" value="pass1234"/>
+    <test name="Admin suite">
+        <parameter name="username" value="admin"/>
+        <parameter name="password" value="pass1234"/>
+        <packages>
+            <package name="com.example.tests"/>
+        </packages>
+        <classes>
+            <class name="com.example.tests.LoginTest"/>
+        </classes>
+    </test>
+    <test name="CheckIn Tests">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.example.tests.LoginTestWithGroups">
+                <methods>
+                    <exclude name="activeXTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

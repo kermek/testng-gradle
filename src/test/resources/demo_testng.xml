@@ -1,0 +1,32 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression suite" time-out="5000" verbose="1">
+    <parameter name="username" value="user"/>
+    <parameter name="password" value="pass1234"/>
+    <test name="Admin suite">
+        <parameter name="username" value="admin"/>
+        <parameter name="password" value="pass1234"/>
+        <packages>
+            <package name="com.example.tests"/>
+        </packages>
+        <classes>
+            <class name="com.example.tests.TestParameters"/>
+        </classes>
+    </test>
+    <test name="CheckIn Tests">
+        <groups>
+            <run>
+                <include name="Smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.example.tests.LoginTestWithGroups">
+                <methods>
+                    <exclude name="activeXTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <listeners>
+        <listener class-name="com.example.listeners.MyTestResultListener"/>
+    </listeners>
+</suite>
